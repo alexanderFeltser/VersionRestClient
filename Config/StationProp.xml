@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>Version Server and Station properties</comment>
+<entry key="user">testuser</entry>
+<entry key="stationName">AUTOTOPNEW7</entry>
+<entry key="pass">12345</entry>
+<entry key="url">http://localhost:8080//gotversion</entry>
+</properties>
