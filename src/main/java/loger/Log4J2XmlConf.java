@@ -8,10 +8,16 @@ import org.apache.logging.log4j.core.LoggerContext;
 
 public class Log4J2XmlConf {
 	private static Logger logger;
+	private final static String LOG_CONFIGURATION_FILE_NAME = "Config/log4j2-spring.xml";
 
 	public static void seLogConfiguration() {
 		LoggerContext context = (LoggerContext) LogManager.getContext(false);
+
 		File file = new File("Config/log4j2-spring.xml");
+		if (!file.exists()) {
+			System.out.println("File " + LOG_CONFIGURATION_FILE_NAME + "does't exists");
+		}
+
 		context.setConfigLocation(file.toURI());
 	}
 
