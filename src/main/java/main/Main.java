@@ -2,6 +2,7 @@ package main;
 
 import java.util.Arrays;
 
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -35,8 +36,9 @@ public class Main {
 	}
 
 	public void run() {
-		Logger logger = Log4J2XmlConf.getLogger();
-		logger.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Start sending version ");
+		Log4J2XmlConf.seLogConfiguration();
+		Logger logger = LogManager.getLogger();
+		logger.info(" >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Start sending version ");
 		VersionInfoCreator vrscreator = null;
 		try {
 			vrscreator = new MyVersionCreator();

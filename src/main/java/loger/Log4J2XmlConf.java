@@ -13,9 +13,9 @@ public class Log4J2XmlConf {
 	public static void seLogConfiguration() {
 		LoggerContext context = (LoggerContext) LogManager.getContext(false);
 
-		File file = new File("Config/log4j2-spring.xml");
+		File file = new File(LOG_CONFIGURATION_FILE_NAME);
 		if (!file.exists()) {
-			System.out.println("File " + LOG_CONFIGURATION_FILE_NAME + "does't exists");
+			System.out.println("File " + LOG_CONFIGURATION_FILE_NAME + " does't exists");
 		}
 
 		context.setConfigLocation(file.toURI());
