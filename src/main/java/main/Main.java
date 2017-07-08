@@ -2,6 +2,7 @@ package main;
 
 import java.util.Arrays;
 
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import AutotopClient.rest_client.MyVersionCreator;
 import interfaces.VersionInfoCreator;
+import loger.Log4J2XmlConf;
 import mail.MailAPI;
 import mail.MyApplicationContextHolder;
 import sender.VersionSender;
@@ -28,26 +30,30 @@ public class Main {
 
 	// @Autowired
 	// private RestTemplate restTemplate;
-
 	public Main() {
 
 	}
 
 	public void run() {
-		VersionInfoCreator vrscreator = new MyVersionCreator();
+		Logger logger = Log4J2XmlConf.getLogger();
+		logger.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Start sending version ");
+		VersionInfoCreator vrscreator = null;
+		try {
+			vrscreator = new MyVersionCreator();
+		} catch (Exception e) {
+			logger.info(
+					"MyVersionCreator  from  ecternal jar versionCreator.jar  not created error: " + e.getMessage());
+			logger.info("Please add versionCreator.jar to Lib of VersionRestClint.jar ");
+			System.exit(1);
+		}
+
 		if (vSender.sendVersion(vrscreator.getVersionString())) {
 			mailSender.sendEmail("alexanderfster@gmail.com", "alexanderfster@gmail.com", "Version   sended",
 					vrscreator.getVersionString());
-
-			// mailSender.sendEmail(setLikeMail(vrscreator.getServerName()),
-			// setLikeMail(vrscreator.getServerName()),
-			// "Version sended", vrscreator.getVersionString());
 		} else {
-
 			mailSender.sendEmail("alexanderfster@gmail.com", setLikeMail(vrscreator.getServerName()),
 					"Version   NOT SENDED", vrscreator.getVersionString());
 		}
-
 	}
 
 	public String setLikeMail(String s) {
@@ -67,6 +73,7 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(Main.class, args);
 		ApplicationContext ctx = MyApplicationContextHolder.getApplicationContext();
 		// printCreateedBeans(ctx);
@@ -75,8 +82,5 @@ public class Main {
 		// System.out.println("RestTemplate :" + restTemplate.toString());
 		Main m = ctx.getBean(Main.class);
 		m.run();
-
-		// CrunchifyEmailAPI crunchifyEmailAPI =
-		// ctx.getBean(CrunchifyEmailAPI.class);
 	}
 }

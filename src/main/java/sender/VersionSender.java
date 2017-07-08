@@ -1,7 +1,10 @@
 package sender;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 //import AutotopClient.rest_client.MyVersionCreator;
@@ -17,7 +20,7 @@ public class VersionSender {
 
 	@Autowired
 	private MailAPI emailAPI;
-
+	private static Logger logger = LogManager.getLogger();
 	// @Autowired
 	// private RestTemplate restTemplate1;// = new RestTemplate();
 
@@ -36,20 +39,26 @@ public class VersionSender {
 				"User");
 		Url retUrl = null;
 
-		retUrl = restTemplate.postForObject(url, request, Url.class);
+		try {
+			retUrl = restTemplate.postForObject(url, request, Url.class);
+		} catch (RestClientException e) {
+			logger.fatal("Error sending version to server " + e.getMessage());
+			e.printStackTrace();
+			return false;
+		}
 		// System.out.println(retUrl.getUrl());
 		if (retUrl.getUrl().equals("/gotversion")) {
-			System.out.println(retUrl.getUrl());
+			logger.info("Version sended  to server " + retUrl.getUrl());
 			return true;
 		} else {
-			System.out.println(retUrl.getUrl());
+			logger.info("Version not sended  to server " + retUrl.getUrl());
 			return false;
 		}
 	}
 
 	public void sendEmail(String s) {
 		if (emailAPI == null) {
-			System.out.println("Email Service does't exists");
+			logger.info("Email Service does't exists unable to send mail");
 			return;
 		}
 

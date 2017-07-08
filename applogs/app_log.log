@@ -1,0 +1,17 @@
+[INFO ] 2017-07-08 15:09:51.581 [main] Log4J2XmlConf - >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Start sending version 
+[FATAL] 2017-07-08 15:09:52.689 [main] VersionSender - Error sending version to server I/O error on POST request for "http://localhost:8080/gotversion": Connection refused: connect; nested exception is java.net.ConnectException: Connection refused: connect
+[DEBUG] 2017-07-08 15:09:52.689 [main] MailAPI - Send mail from: autotopNew0@menora.co.il to alexanderfster@gmail.com: eng:01,pb:0.0, DB: 00.01
+[FATAL] 2017-07-08 15:17:14.228 [main] Log4J2XmlConf - File Config\MailProp.xml1does not exists
+[FATAL] 2017-07-08 15:17:53.942 [main] Log4J2XmlConf - File Config\MailProp.xml1 does not exists
+[INFO ] 2017-07-08 15:26:10.005 [main] Log4J2XmlConf - >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Start sending version 
+[FATAL] 2017-07-08 15:26:11.114 [main] VersionSender - Error sending version to server I/O error on POST request for "http://localhost:8080/gotversion": Connection refused: connect; nested exception is java.net.ConnectException: Connection refused: connect
+[INFO ] 2017-07-08 15:26:11.114 [main] MailAPI - Sending mail from: autotopNew0@menora.co.il to alexanderfster@gmail.com: eng:01,pb:0.0, DB: 00.01
+[INFO ] 2017-07-08 15:28:24.515 [main] Log4J2XmlConf - >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Start sending version 
+[FATAL] 2017-07-08 15:28:25.618 [main] VersionSender - Error sending version to server I/O error on POST request for "http://localhost:8080/gotversion": Connection refused: connect; nested exception is java.net.ConnectException: Connection refused: connect
+[INFO ] 2017-07-08 15:28:25.618 [main] MailAPI - Sending mail from: autotopNew0@menora.co.il to alexanderfster@gmail.com subject: Version   NOT SENDED body: eng:01,pb:0.0, DB: 00.01
+[INFO ] 2017-07-08 15:32:30.656 [main] Log4J2XmlConf - >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Start sending version 
+[INFO ] 2017-07-08 15:32:32.112 [main] VersionSender - Version sended  to server /gotversion
+[INFO ] 2017-07-08 15:32:32.112 [main] MailAPI - Sending mail from: alexanderfster@gmail.com to alexanderfster@gmail.com subject: Version   sended body: eng:01,pb:0.0, DB: 00.01
+[INFO ] 2017-07-08 15:50:00.187 [main] Log4J2XmlConf - >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Start sending version 
+[INFO ] 2017-07-08 15:50:00.338 [main] VersionSender - Version sended  to server /gotversion
+[INFO ] 2017-07-08 15:50:00.338 [main] MailAPI - Sending mail from: alexanderfster@gmail.com to alexanderfster@gmail.com subject: Version   sended body: eng:01,pb:0.0, DB: 00.01

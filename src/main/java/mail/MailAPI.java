@@ -2,6 +2,8 @@ package mail;
 
 import java.util.Properties;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
@@ -11,13 +13,16 @@ import org.springframework.stereotype.Component;
 //@Service("mailSender")
 @Component
 public class MailAPI {
-
+	private static Logger logger = LogManager.getLogger();
 	// @Autowired
 	private MailSender mailSender; // MailSender interface defines a strategy
 	@Autowired // for sending simple mails
 	private MailProperties mailProperties;
 
 	public void sendEmail(String toAddress, String fromAddress, String subject, String msgBody) {
+
+		logger.info("Sending mail from: " + fromAddress + " to " + toAddress + " subject: " + subject + " body: "
+				+ msgBody);
 		mailSender = new JavaMailSenderImpl();
 
 		((JavaMailSenderImpl) mailSender).setJavaMailProperties(setMailProperties());
@@ -42,7 +47,6 @@ public class MailAPI {
 		mailProperties.put("mail.smtp.starttls.required", "true");
 		mailProperties.put("mail.smtp.debug", "true");
 		return mailProperties;
-
 	}
 
 }

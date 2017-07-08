@@ -6,7 +6,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.apache.logging.log4j.core.Logger;
 import org.springframework.stereotype.Component;
+
+import loger.Log4J2XmlConf;
 
 @Component
 public class MailProperties {
@@ -19,11 +22,12 @@ public class MailProperties {
 	}
 
 	public MailProperties() {
+		Logger logger = (Logger) Log4J2XmlConf.getLogger();
 		try {
 			// System.out.println("Mail Properties created");
 			File fl = new File(MAIL_PROPERTIES_FILE_NAME);
 			if (!fl.exists()) {
-				System.out.println("File " + MAIL_PROPERTIES_FILE_NAME + "does not exists");
+				logger.fatal("File " + MAIL_PROPERTIES_FILE_NAME + " does not exists");
 				System.exit(0);
 			}
 			// System.out.println("StationProperties file exists");
@@ -33,12 +37,11 @@ public class MailProperties {
 			fis.close();
 
 		} catch (FileNotFoundException e) {
-			System.out.println("File " + MAIL_PROPERTIES_FILE_NAME + "does not exists");
-			System.out.println(e.getMessage());
+			logger.fatal("File " + MAIL_PROPERTIES_FILE_NAME + " does not exists: " + e.getMessage());
 			System.exit(0);
 		} catch (IOException e) {
-			System.out.println("Warning: Unable to close " + MAIL_PROPERTIES_FILE_NAME + " file.");
-			System.out.println(e.getMessage());
+			logger.info("Warning: Unable to close " + MAIL_PROPERTIES_FILE_NAME + " file. : " + e.getMessage());
+
 		}
 	}
 }
